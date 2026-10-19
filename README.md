@@ -55,5 +55,29 @@ segments images, or that transformer J-space is dendritic nullspace.
 
 V3 is separate from [SihtiBrain](https://github.com/anttiluode/SihtiBrain)
 and [SihtiBrainV2](https://github.com/anttiluode/SihtiBrainV2). Neither repo
-is modified here. The next gate is a causal multi-column sequence test, not
-a claim established by this figure.
+is modified here.
+
+## Gate 2: a moving bar and the lost phase
+
+The [16-column causal movie test](docs/GATE2.md) sends each column's two
+branch-weighted pings to its neighbors **one frame later**. Each column
+reads a local three-location patch through the same seven-node passive
+cable. The receiver averages the two pulse phases before it updates.
+
+![Gate 2: moving bar, noisy sensors and causal predictions](docs/tracker.svg)
+
+```bash
+python demo_tracker.py --output runs/tracker
+```
+
+On 32 fixed noisy movies, next-frame top-three bar recall is **0.615** for
+the adaptive schedule. It is **exactly 0.615** for both an externally preset
+schedule and a symmetric two-pulse neighbor route. A simple two-frame
+velocity forecast reaches **0.781**. The adaptive and symmetric prior maps
+differ by at most `3.3e-16` because averaging mirrored phases cancels their
+direction. This gate **fails** to show a tracking advantage for the ping.
+
+The next falsifiable question is whether a phase-aware downstream receiver
+can retain the directional information and learn a useful motion rule under
+the same causal inputs and pulse budget. This gate has no slow conductance
+write or self-updating object basin.
