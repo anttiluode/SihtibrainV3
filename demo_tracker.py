@@ -71,6 +71,10 @@ def main():
     q = np.array([0., 0., 1., 1., 0., 0.])
     cancellation = float(np.max(np.abs(route(q, adaptive).mean(axis=0) -
                                         route(q, controls["symmetric"]).mean(axis=0))))
+    paired = np.array([v["next_bar_top3_recall"] - a["next_bar_top3_recall"]
+                       for a, v in zip(results["adaptive"], results["velocity"])])
+    bootstrap = np.random.default_rng(2026).choice(
+        paired, size=(10000, len(paired)), replace=True).mean(axis=1)
     data = {
         "protocol": {"columns": 16, "frames": 20, "bar_width": 3,
                      "seeds": args.seeds, "sensory_std": .35, "clutter_probability": .08,
@@ -80,6 +84,12 @@ def main():
                      "no_oracle": "target masks used solely for evaluation"},
         "phase_average_vs_symmetric_max_abs": cancellation,
         "rollout_prior_vs_symmetric_max_abs": max_difference,
+        "paired_comparison": {
+            "velocity_minus_adaptive_paired_mean": float(np.mean(paired)),
+            "positive_seeds": int(np.sum(paired > 0)),
+            "ties": int(np.sum(paired == 0)),
+            "bootstrap_95_percent": np.quantile(bootstrap, [.025, .975]).tolist(),
+            "bootstrap_seed": 2026, "bootstrap_draws": 10000},
         "metrics": results,
         "means": {key: {metric: float(np.mean([row[metric] for row in values]))
                         for metric in values[0]} for key, values in results.items()},

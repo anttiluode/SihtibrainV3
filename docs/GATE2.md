@@ -75,7 +75,8 @@ slightly cleaner than raw evidence, but that improvement is equally
 available to a symmetric, phase-blind neighbor smoother.
 The velocity baseline wins next-bar recall on 31/32 movie seeds and ties
 once; its mean paired advantage is 0.166 (bootstrap 95% interval
-0.146–0.184 over these synthetic movie seeds). This interval describes
+0.146–0.184 over these synthetic movie seeds; 10,000 resamples with seed
+2026, recorded in the metrics JSON). This interval describes
 this generator, not real image tracking.
 
 Reproduce with `python demo_tracker.py --output runs/tracker`. The exact

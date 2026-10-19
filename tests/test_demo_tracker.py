@@ -19,6 +19,7 @@ class TrackerDemoTests(unittest.TestCase):
             self.assertIn("velocity", result["metrics"])
             self.assertIn("persistence", result["metrics"])
             self.assertLess(result["phase_average_vs_symmetric_max_abs"], 1e-12)
+            self.assertIn("velocity_minus_adaptive_paired_mean", result["paired_comparison"])
             self.assertTrue((Path(tmp) / "tracker.svg").exists())
 
 

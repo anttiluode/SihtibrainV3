@@ -46,6 +46,17 @@
   },
   "phase_average_vs_symmetric_max_abs": 1.1102230246251565e-16,
   "rollout_prior_vs_symmetric_max_abs": 3.3306690738754696e-16,
+  "paired_comparison": {
+    "velocity_minus_adaptive_paired_mean": 0.1661184210526316,
+    "positive_seeds": 31,
+    "ties": 1,
+    "bootstrap_95_percent": [
+      0.14638157894736847,
+      0.18421052631578952
+    ],
+    "bootstrap_seed": 2026,
+    "bootstrap_draws": 10000
+  },
   "metrics": {
     "adaptive": [
       {
