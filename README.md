@@ -1,5 +1,7 @@
 # SihtiBrainV3 — a ping that changes where it looks
 
+Part of monday madness - 8 repos mostly consolidated to Sihtibrain. 
+
 An intentionally small experiment on whether a **scalar somatic pulse** can
 sample distinct hidden branches over successive cycles. A seven-compartment
 leaky reciprocal cable has a soma, two branch roots, and four leaves. Three
